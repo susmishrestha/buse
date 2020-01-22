@@ -15,7 +15,7 @@ export default function ProfilePage() {
           title="Bed"
           price={30000}
           location="Pokhara"
-          rating="4"
+          rating="5"
           image={bed}
         />
       </div>
