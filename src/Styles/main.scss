@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  font-size: 18px;
+}
+
+@import "./iconInput";
+@import "./loginPage";
+@import "./registerPage";
+@import "./category";
+@import "./posts";
+@import "./profile";
+@import "./header";
+@import "./notifications";
