@@ -11,6 +11,10 @@
     border-radius: 4rem;
     padding: 0.5rem 1rem;
 
+    &.active {
+      background-color: #fcd661;
+    }
+
     img {
       width: 3.5rem;
       background: white;

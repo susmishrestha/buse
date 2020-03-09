@@ -17,16 +17,18 @@ body {
       padding: 0 4rem 0 1rem;
 
       .add-new-post {
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         img {
-          background-color: #fb683b;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
+          background-color: $maincolor;
+          border: 0;
           border-radius: 50%;
 
           width: 3rem;
           height: 3rem;
           position: fixed;
           bottom: 1rem;
-          left: 1rem;
+          left: 4rem;
         }
       }
     }
@@ -39,7 +41,7 @@ body {
       left: 0;
       top: 0;
       right: 25%;
-
+      z-index: 10;
       background-color: white;
       padding: 3rem;
 
@@ -54,16 +56,6 @@ body {
       #search-box {
         position: relative;
 
-        #search-field {
-          width: 100%;
-          box-sizing: border-box;
-          padding: 1rem;
-          padding-left: 3.5rem;
-          border: 0;
-          background-color: #f8f8f8;
-          border-radius: 0.75rem;
-        }
-
         img {
           position: absolute;
           left: 1.5rem;
@@ -72,5 +64,22 @@ body {
         }
       }
     }
+  }
+}
+
+.large {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-left: 3.5rem;
+  border: 0;
+  background-color: #f8f8f8;
+  border-radius: 0.75rem;
+
+  &.normal {
+    background-color: white;
+    padding-left: 1rem;
+    border: 1px solid #939393;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 }

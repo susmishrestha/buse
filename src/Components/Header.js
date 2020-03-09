@@ -4,6 +4,14 @@ import logo from "../Images/logo.svg";
 import search from "../Images/magnifying-glass.svg";
 
 export default function Header() {
+  const searchRef = React.createRef();
+
+  const doSearch = e => {
+    console.log(searchRef.current.value);
+    e.preventDefault(); //disable form submit from refreshing page
+    //Call Search API
+  };
+
   return (
     <header>
       <div>
@@ -13,7 +21,9 @@ export default function Header() {
         <img id="logo" src={logo} alt="" />
       </div>
       <div id="search-box">
-        <input id="search-field" type="text" />
+        <form action="" onSubmit={doSearch}>
+          <input class="large" type="text" ref={searchRef} />
+        </form>
         <img src={search} alt="" />
       </div>
     </header>

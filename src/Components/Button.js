@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Button({ children, variant, onClick }) {
+export default function Button({ children, variant, onClick, fullWidth }) {
   let bgColor = "#575a89";
   let color = "#d0cde1";
 
@@ -18,7 +18,7 @@ export default function Button({ children, variant, onClick }) {
   }
 
   return (
-    <div style={{ width: "70%", margin: "auto" }}>
+    <div style={{ width: fullWidth ? "100%" : "70%", margin: "auto" }}>
       <button
         onClick={onClick}
         style={{

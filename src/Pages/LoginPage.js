@@ -6,16 +6,54 @@ import email from "../Images/email.svg";
 
 import Button from "../Components/Button";
 import { Link } from "react-router-dom";
+import myAxios from "../axios.js";
+import makeToast from "../toast.js";
 
-export default function LoginPage() {
+export default function LoginPage({ history }) {
+  const emailRef = React.useRef();
+  const passwordRef = React.useRef();
+
+  const loginUser = () => {
+    myAxios
+      .post("/user/login", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value
+      })
+      .then(response => {
+        makeToast("success", response.data.message);
+        localStorage.setItem("token", response.data.token);
+        history.push("/home");
+      })
+      .catch(err => {
+        console.log(err);
+        if (
+          err &&
+          err.response &&
+          err.response.data &&
+          err.response.data.message
+        )
+          makeToast("error", err.response.data.message);
+      });
+  };
+
   return (
     <div className="login-page">
       <div className="login-area">
         <div>
           <h3 style={{ marginBottom: "2rem" }}>SIGN IN</h3>
-          <IconInput placeholder="Email" img={email} type="email" />
-          <IconInput placeholder="Password" img={password} type="password" />
-          <Button>Login</Button>
+          <IconInput
+            placeholder="Email"
+            img={email}
+            type="email"
+            xRef={emailRef}
+          />
+          <IconInput
+            placeholder="Password"
+            img={password}
+            type="password"
+            xRef={passwordRef}
+          />
+          <Button onClick={loginUser}>Login</Button>
           <h3>OR</h3>
           <Link to="/register">
             <Button variant={3}>Register</Button>

@@ -1,41 +1,49 @@
 import React from "react";
 import Category from "../Components/Category";
 import Post from "../Components/Post";
-import all from "../Images/all.svg";
-import electronics from "../Images/electronics.svg";
-import furniture from "../Images/furniture.svg";
-import jewellery from "../Images/jewellery.svg";
-import clothes from "../Images/clothes.svg";
-import utensils from "../Images/utensils.svg";
-import laptop from "../Images/laptop.svg";
-import decoration from "../Images/decoration.svg";
 import table from "../Images/table.svg";
 import chair from "../Images/chair.svg";
 import bed from "../Images/bed.svg";
+import myAxios, { baseURL, getAuthorizationHeaders } from "../axios";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
+  const [categories, setCategories] = React.useState([]);
+
+  React.useEffect(() => {
+    myAxios
+      .get("/user/category", getAuthorizationHeaders())
+      .then(response => {
+        setCategories(response.data.category);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="homePage">
       <div className="categories">
         <h2>Categories</h2>
 
-        <Category picture={all} category="All" />
-        <Category picture={electronics} category="Electronics" />
-        <Category picture={furniture} category="Furniture" />
-        <Category picture={jewellery} category="Jewellery" />
-        <Category picture={clothes} category="Clothes" />
-        <Category picture={utensils} category="Utensils" />
-        <Category picture={laptop} category="Laptop" />
-        <Category picture={decoration} category="Decoration" />
+        {categories.map(category => (
+          <Category
+            picture={baseURL + category.url}
+            category={category.name}
+            active={category.name === "All"}
+          />
+        ))}
       </div>
       <div className="posts">
-        <Post
-          title="Bed"
-          price={30000}
-          location="Pokhara"
-          rating="4"
-          image={bed}
-        />
+        <Link to="/home/postdetails">
+          <Post
+            title="Bed"
+            price={30000}
+            location="Pokhara"
+            rating="4"
+            image={bed}
+          />
+        </Link>
         <Post
           title="Table"
           price={20000}
